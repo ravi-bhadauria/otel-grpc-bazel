@@ -1,0 +1,12 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:exclude 3rdparty
+# gazelle:exclude .build-disk-cache
+# gazelle:exclude .ijwb
+# gazelle:prefix otel/grpc
+# gazelle:build_file_name BUILD.bazel
+# gazelle:go_naming_convention import
+# gazelle:proto perfile
+gazelle(
+    name = "gazelle",
+)
