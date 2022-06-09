@@ -24,11 +24,6 @@
       "external/": "external tools don't pass vet"
     }
   },
-  "cgocall": {
-    "exclude_files": {
-      "external/": "external tools don't pass vet"
-    }
-  },
   "composites": {
     "exclude_files": {
       "external/": "external tools don't pass vet"
