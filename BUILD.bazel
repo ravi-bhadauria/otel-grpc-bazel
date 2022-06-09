@@ -1,4 +1,5 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@io_bazel_rules_go//go:def.bzl", "nogo")
 
 # gazelle:exclude 3rdparty
 # gazelle:exclude .build-disk-cache
@@ -9,4 +10,35 @@ load("@bazel_gazelle//:def.bzl", "gazelle")
 # gazelle:proto perfile
 gazelle(
     name = "gazelle",
+)
+
+# Go code linter
+nogo(
+    name = "nogo_vet",
+    config = "//tools/analyzers:nogo_config.json",
+    visibility = ["//visibility:public"],  # must have public visibility
+    # These deps enable the analyses equivalent to running `go vet`.
+    # Passing vet = True enables only a tiny subset of these (the ones that are always correct).
+    # You can see the what `go vet` does by running `go doc cmd/vet`.
+    deps = [
+        "@org_golang_x_tools//go/analysis/passes/asmdecl",
+        "@org_golang_x_tools//go/analysis/passes/assign",
+        "@org_golang_x_tools//go/analysis/passes/atomic",
+        "@org_golang_x_tools//go/analysis/passes/bools",
+        "@org_golang_x_tools//go/analysis/passes/buildtag",
+        "@org_golang_x_tools//go/analysis/passes/composite",
+        "@org_golang_x_tools//go/analysis/passes/httpresponse",
+        "@org_golang_x_tools//go/analysis/passes/loopclosure",
+        "@org_golang_x_tools//go/analysis/passes/lostcancel",
+        "@org_golang_x_tools//go/analysis/passes/nilfunc",
+        "@org_golang_x_tools//go/analysis/passes/printf",
+        "@org_golang_x_tools//go/analysis/passes/shift",
+        "@org_golang_x_tools//go/analysis/passes/stdmethods",
+        "@org_golang_x_tools//go/analysis/passes/structtag",
+        "@org_golang_x_tools//go/analysis/passes/tests",
+        "@org_golang_x_tools//go/analysis/passes/unmarshal",
+        "@org_golang_x_tools//go/analysis/passes/unreachable",
+        "@org_golang_x_tools//go/analysis/passes/unsafeptr",
+        "@org_golang_x_tools//go/analysis/passes/unusedresult",
+    ],
 )

@@ -59,7 +59,10 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains(version = go_version)
+go_register_toolchains(
+    nogo = "@//:nogo_vet",
+    version = go_version,
+)
 
 # needed for gRPC support
 load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
