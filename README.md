@@ -7,13 +7,13 @@ You can run this example with bazel. First start the developer satellite by usin
 
 **LightStep** exporter:
 
+Start the server:
+
 ```shell
 bazel run //server
 ```
 
 Start the client:
-
-**Lightstep** exporter:
 
 ```shell
 bazel run //client
